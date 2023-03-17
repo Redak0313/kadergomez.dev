@@ -5,7 +5,7 @@
       <a href="/">
         <div class="avatar transition ease-in-out w-1/2 hover:scale-[102%] block m-auto mt-3 mb-6">
           <div>
-            <img class="mask mask-circle" src="/profile.jpg" alt="profile image" />
+            <img class="mask mask-decagon" src="/kader.png" alt="profile image" />
           </div>
         </div>
       </a>
@@ -14,14 +14,14 @@
       <!-- Sidebar content here -->
       <li><a id="home" href="/">Home</a></li>
       <li><a id="projects" href="/projects">Projects</a></li>
-      <li><a id="services" href="/services">Services</a></li>
-      <li><a id="store" href="/store">Store</a></li>
+      <!-- <li><a id="services" href="/services">Services</a></li> -->
+      <!-- <li><a id="store" href="/store">Store</a></li> -->
       <li><a id="blog" href="/blog/">Blog</a></li>
       <li><a id="cv" href="/cv">CV</a></li>
-      <li><a href="mailto:contact.manuelernestog@gmail.com">Contact</a></li>
+      <li><a href="mailto:contact.redakdev@gmail.com">Contact</a></li>
     </ul>
     <div class="social-icons px-4 my-2 flex self-center">
-      <a
+      <!-- <a
         href="https://manuelernestog.github.io/paylink/"
         target="_blank"
         class="mx-3"
@@ -40,8 +40,8 @@
             d="M5 2h2v3H5zm4 0h2v3H9zm4 0h2v3h-2zm6 7h-2V7H3v11c0 1.654 1.346 3 3 3h8c1.654 0 3-1.346 3-3h2c1.103 0 2-.897 2-2v-5c0-1.103-.897-2-2-2zm-4 9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V9h10v9zm2-2v-5h2l.002 5H17z"
           ></path></svg
         >
-      </a>
-      <a href="https://github.com/manuelernestog" target="_blank" class="mx-3" aria-label="Github" title="Github">
+      </a> -->
+      <a href="https://github.com/kader1303" target="_blank" class="mx-3" aria-label="Github" title="Github">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -55,7 +55,7 @@
           ></path>
         </svg>
       </a>
-      <a href="https://twitter.com/manuelernestog" target="_blank" class="mx-3" aria-label="Twitter" title="Twitter">
+      <a href="https://twitter.com/KaderGomezDev" target="_blank" class="mx-3" aria-label="Twitter" title="Twitter">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -68,7 +68,7 @@
         </svg>
       </a>
       <a
-        href="https://www.linkedin.com/in/manuelernestogr"
+        href="https://www.linkedin.com/in/kadergomezdev"
         target="_blank"
         class="mx-3"
         aria-label="Linkedin"
@@ -115,12 +115,12 @@
   const pages = [projectsLink, servicesLink, storeLink, blogLink, cvLink];
 
   pages.forEach((elem) => {
-    if (url.includes(elem.id)) {
+    if (url.includes(elem!.id)) {
       isHome = false;
-      elem.classList.add("bg-base-300");
+      elem!.classList.add("bg-base-300");
     }
   });
   if (isHome) {
-    homeLink.classList.add("bg-base-300");
+    homeLink!.classList.add("bg-base-300");
   }
 </script>

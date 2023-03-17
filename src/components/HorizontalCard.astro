@@ -1,5 +1,5 @@
 ---
-const { title, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
+const { title, subtitle, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
 ---
 
 <div class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]">
@@ -11,6 +11,9 @@ const { title, img, desc, url, badge, tags, target = '_blank' } = Astro.props;
           {title}
           {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
         </h1>
+        <h2 class="text-sm font-semibold">
+          {subtitle}
+        </h2>
         <p class="py-1 text-1xl">{desc}</p>
         <div class="card-actions justify-end">
           {tags && tags.map((tag) => <div class="badge badge-outline">{tag}</div>)}

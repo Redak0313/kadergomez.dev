@@ -1,16 +1,128 @@
 ---
-title: "Demo Post 1"
-description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-pubDate: "Sep 10 2022"
-heroImage: "/post_img.webp"
+title: "Observable Pattern una alternativa al useContext en React y React Native."
+username: "kader1303"
+pubDate: "Mar 11 2023"
+description: "Comparación entre dos métodos para mantener la sincronización de datos en React: el Observable Pattern y el useContext. Ejemplos de cómo implementarlos, ventajas, desventajas y principales diferencias entre ambos."
+heroImage: "https://firebasestorage.googleapis.com/v0/b/a-manyar.appspot.com/o/Banner.png?alt=media&token=1b640fc3-8a89-4e34-aa6a-e6cc48a6c4eb"
+categories: ["tutorials"]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+## Introducción
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+React es el framework de JavaScript más popular y ampliamente utilizado actualmente para construir todo tipo de aplicaciones. Tanto en React como en React Native, hay varias formas de mantener actualizado el estado de la aplicación y comunicar cambios a los componentes hijos. En este artículo, compararé dos enfoques diferentes: Observable Pattern y useContext, al lío.
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+## Observable Pattern:
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+El patrón Observable es una forma de notificar a los componentes cuando ocurre un cambio en el estado de la aplicación. En React, podemos implementar este patrón utilizando la clase Observable y el método **`subscribe()`**. Podemos usar esto para mantener actualizados los datos en nuestra aplicación sin tener que pasarlos de un componente a otro.
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+Aquí te pongo un ejemplo de cómo implementar Observable Pattern utilizando typescript:
+
+```
+class Observable {
+    private observers: any[] = []
+    subscribe(fn: any) {
+        this.observers.push(fn);
+    }
+
+    unsubscribe(fn: any) {
+        this.observers = this.observers.filter((subscriber) => subscriber !== fn);
+    }
+
+    notify() {
+        this.observers.forEach((observer) => observer());
+    }
+}
+
+const observable = new Observable();
+
+// Luego, en un componente que necesite mantenerse actualizado con el observable, podemos suscribirnos a los cambios de esta forma:
+observable.subscribe(() => {
+    // hacer algo cuando ocurre un cambio
+});
+
+// En el componente que realizamos la accion notificamos al componente que debe mantenerse actualizado mediante:
+oservable.notify();
+
+```
+
+## useContext:
+
+El hook **`useContext`** es una forma de compartir datos en una jerarquía de componentes sin tener que pasar explícitamente las props hacia abajo. Esto nos permite evitar la necesidad de pasar manualmente los datos a través de múltiples niveles.
+
+A continuación, un ejemplo de cómo utilizar **`useContext`**:
+
+```
+import { createContext, useContext } from 'react';
+
+interface DataContextInterface {
+    data: any;
+    setData: (data: any) => void;
+}
+
+const DataContext = createContext<DataContextInterface>({
+    data: null,
+    setData: () => {},
+});
+
+const DataProvider: React.FC = ({ children }) => {
+    const [data, setData] = useState<any>(null);
+
+    return (
+        <DataContext.Provider value={{ data, setData }}>
+            {children}
+        </DataContext.Provider>
+    );
+};
+
+// En el archivo raíz de tu aplicación
+const ContextState = ({children}: any) => {
+  return (
+    <DataContext>
+      {children}
+    </DataContext>
+  )
+}
+
+const App = () => {
+
+  return (
+
+    <NavigationContainer>
+      <ContextState>
+	       // Tu aplicacion aqui...
+      </ContextState>
+    </NavigationContainer>
+    
+  );
+}
+
+export default App
+
+// En un componente que necesite acceder al contexto:
+const MyComponent = () => {
+    const { data, setData } = useContext(DataContext);
+
+    return (
+        // hacer algo con los datos proporcionados por el contexto
+    );
+};
+
+```
+
+## Comparación entre ambos métodos:
+
+Ambos enfoques tienen sus pros y sus contras. Observable Pattern es una forma poderosa de mantener actualizados los componentes cuando ocurren cambios en el estado de la aplicación. No tenemos que pasar los datos de un componente a otro y no tenemos que preocuparnos por la prop drilling. Por otro lado, el patrón Observable puede requerir un poco más de configuración y puede ser menos intuitivo para los desarrolladores que no están familiarizados con él.
+
+En cambio, **`useContext`** es una forma más sencilla de compartir datos entre componentes en una jerarquía de componentes. Es fácil de usar y es probable que la mayoría de los desarrolladores ya estén familiarizados con él. Sin embargo, el uso excesivo de **`useContext`** puede llevar a la creación de un gran contexto que sea difícil de mantener y entender.
+
+Una ventaja del patrón Observable es que es muy escalable y puede manejar una gran cantidad de observadores y objetos observables. Además, los objetos observables pueden ser muy complejos y contener múltiples propiedades que pueden cambiar. 
+
+El hook useContext tiene la ventaja de ser muy fácil de usar y puede simplificar significativamente la forma en que se comparte el estado entre componentes.
+
+En cuanto a las desventajas, el patrón Observable puede ser más difícil de entender y de implementar correctamente que el hook useContext. Además, puede haber un mayor costo de rendimiento al crear y notificar objetos observables y observadores. Mientras el useContext puede ser limitado en términos de la complejidad de los datos que se pueden almacenar y compartir. Además, puede ser difícil de rastrear y depurar cuando se utilizan muchos contextos diferentes.
+
+## En resumen:
+
+Ambos enfoques tienen sus pros y sus contras, y la elección depende del caso de uso específico. Si se necesita una solución escalable y compleja para compartir datos entre muchos componentes, el patrón Observable puede ser una buena opción. Si se necesita una solución simple y fácil de usar para compartir datos globales, el hook useContext es una buena opción. 
+
+En última instancia, la elección depende de los requisitos específicos de la aplicación y del estilo de codificación preferido del desarrollador.

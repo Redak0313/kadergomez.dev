@@ -3,49 +3,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
 ---
 
-<BaseLayout title = "Projects">
+<BaseLayout title="Projects">
   <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5">Latest Projects</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
+    title="D'McPherson Editorial App"
+    subtitle="React Native | Typescript"
+    img="/mcpherson.png"
+    desc="Mobile application developed in React Native of the DMcPherson Publishing House where you can see the novelties, popular and most read books of its catalog. Meet the authors and their works, read FREE excerpts of the books enjoy literary newsletters and much more..."
+    url="https://play.google.com/store/apps/details?id=com.dmcpherson"
+    badge="IN PRODUCTION"
   />
   <div class="divider my-0"></div>
   <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
+    title="Let's Twitt"
+    subtitle="React | Javascript | Open Ai"
+    img="/letstwitt.png"
+    desc="Personal learning project consisting of a browser extension made using React to generate tweets and alerts using the Open Ai API."
+    url="https://github.com/kader1303/lets-twitt-react"
+    badge="IN PROGRESS"
   />
 
   <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">No longer mantained</div>
   </div>
 
   <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
+    title="MC-U Tool"
+    subtitle="Autoit | Windows"
+    img="/mcu.png"
     desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     url="#"
-    badge="FOSS"
+    badge="DEPRECATED"
   />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+
 </BaseLayout>
