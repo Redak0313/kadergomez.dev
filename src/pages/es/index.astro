@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HorizontalCard from "../../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import i18next, { t, changeLanguage } from "i18next";
+import { Trans, HeadHrefLangs } from "astro-i18next/components";
+
+changeLanguage("es");
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout>
+  <div class="pb-12 mt-5">
+    <div class="text-5xl font-bold">{t("site.title")}</div>
+    <div class="text-3xl py-3 font-bold">
+      Software Developer and Civil Engineer
+    </div>
+    <div class="py-2">
+      <text class="text-lg">
+        Hello! I'm 31 years old, and I'm a Civil Engineer by title but a
+        developer by heart. Currently, I work as a Full Stack for D'McPherson
+        Designs, D'McPherson Editorial, MC printing, Cukbanía and among other
+        project. In addition, I enjoy developing some personal projects that
+        help me learn and maintain daily motivation. I really like football and
+        especially Real Madrid...
+      </text>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="https://twitter.com/KaderGomezDev" target="_blank">
+        Let's connect!</a
+      >
+     </div>
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">My latest projects {"() =>"}</div>
+  </div>
+
+  <HorizontalCard
+    title="D'McPherson Editorial App"
+    subtitle="React Native | Typescript"
+    img="/mcpherson.png"
+    desc="Mobile application developed in React Native of the DMcPherson Publishing House where you can see the novelties, popular and most read books of its catalog. Meet the authors and their works, read FREE excerpts of the books enjoy literary newsletters and much more..."
+    url="https://play.google.com/store/apps/details?id=com.dmcpherson"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="MECS"
+    subtitle="C#"
+    img="/mecs.png"
+    desc="D'McPherson Editorial Control Software is made in C# and has all the data from autors, editors, and ilustrators from this publishing house, it also control the sales and generates monthly reports to the autors among many other functions required by this entity."
+    url="https://1drv.ms/v/s!AoScFW6xlNY3lsp3dBPQmRJB5eNOzA?e=eC36aR"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Let's Twitt"
+    subtitle="React | Typescript | Tailwind CSS | Open Ai | Chrome Extension"
+    img="/letstwitt.png"
+    desc="Personal learning project consisting of a browser extension made using React to generate tweets and alerts using the Open Ai API."
+    url="https://github.com/kader1303/Lets-Twitt-Ts"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + post.slug}
+          target="_self"
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+</BaseLayout>

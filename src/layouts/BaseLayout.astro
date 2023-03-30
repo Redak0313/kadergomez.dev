@@ -3,22 +3,40 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
+import i18next, { t, changeLanguage } from "i18next";
 
-import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+// import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
-const { image, title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { image } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" data-theme="dracula">
+<html lang="en">
   <head>
-    <BaseHead title={title} description={description} image={image} />
+    <script is:inline>
+      // ☝️ This script prevent the FART effect.
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "dracula");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme")
+        );
+      // "theme" LocalStorage value is set by the package to remember user preference.
+      // The value is checked and applyed before rendering anything.
+    </script>
+    <script>
+      import { themeChange } from 'theme-change';
+      themeChange();
+      // 👆 you could import the CDN directly instead of these two lines
+    </script>
+    <BaseHead title={t("site.title")} description={t("site.description")} image={image} />
   </head>
   <body>
     <div class="bg-base-100 drawer drawer-mobile">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col bg-base-100">
-        <Header title={SITE_TITLE} />
+        <Header title={t("site.title")} />
         <div class="md:flex md:justify-center">
           <main class="p-6 pt-10 max-w-[900px]">
             <slot />

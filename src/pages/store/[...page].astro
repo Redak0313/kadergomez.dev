@@ -1,11 +1,14 @@
 ---
+import { changeLanguage } from "i18next";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HorizontalShopItem from "../../components/HorizontalShopItem.astro";
 import { getCollection } from "astro:content";
 
+changeLanguage("es");
+
 export async function getStaticPaths({ paginate }) {
-  const items = await getCollection("store");
-  return paginate(items, { pageSize: 10 });
+    const items = await getCollection("store");
+    return paginate(items, { pageSize: 10 });
 }
 const { page } = Astro.props;
 ---

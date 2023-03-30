@@ -1,3 +1,8 @@
+---
+import { t } from "i18next";
+import { LanguageSelector } from "astro-i18next/components";
+---
+
 <div class="drawer-side bg-base-200">
   <label for="my-drawer" class="drawer-overlay bg-base-200"></label>
   <div class="menu flex flex-col flex-nowrap p-4 overflow-y-auto w-[21rem] bg-base-200 text-base-content">
@@ -12,14 +17,70 @@
     </div>
     <ul class="grow shrink">
       <!-- Sidebar content here -->
-      <li><a id="home" href="/">Home</a></li>
-      <li><a id="projects" href="/projects">Projects</a></li>
+      <li><a id="home" href="/">
+        {t("sidebar.home")}
+      </a></li>
+      <li><a id="projects" href="/projects">
+        {t("sidebar.project")}
+      </a></li>
       <!-- <li><a id="services" href="/services">Services</a></li> -->
       <!-- <li><a id="store" href="/store">Store</a></li> -->
-      <li><a id="blog" href="/blog/">Blog</a></li>
+      <li><a id="blog" href="/blog/">
+        {t("sidebar.blog")}
+      </a></li>
       <li><a id="cv" href="/cv">CV</a></li>
-      <li><a href="mailto:contact.redakdev@gmail.com">Contact</a></li>
+      <li><a href="mailto:contact.redakdev@gmail.com">
+        {t("sidebar.contact")}
+      </a></li>
     </ul>
+
+    <div class="mb-14 flex felx-row">
+      <a target="_blank" class="mx-2" aria-label="Theme" title="Theme">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width={1.5} 
+          stroke="currentColor" 
+          >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" />
+        </svg>
+      </a>
+      <!-- LanguageSelector with custom language naming -->
+      <LanguageSelector
+        showFlag={true}
+        languageMapping={{ en: "English", es: "Español" }}
+        class="select select-ghost select-xs w-auto max-w-xs"
+      />
+      <a target="_blank" class="mx-2" aria-label="Theme" title="Theme">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          style="fill: currentColor;transform: ;msFilter:;">
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" />
+        </svg>
+      </a>
+      <select data-choose-theme class="select select-ghost select-xs w-auto max-w-xs mr-auto">
+        <option value="dracula">Dracula</option>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="corporate">Corporate</option>
+        <option value="retro">Retro</option>
+        <option value="cyberpunk">Cyberpunk</option>
+        <option value="luxury">Luxury</option>
+      </select>
+    </div>
+
     <div class="social-icons px-4 my-2 flex self-center">
       <a
         href="https://paylink.kadergomez.dev/"
