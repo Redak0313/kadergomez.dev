@@ -8,6 +8,14 @@ const blogSchema = z.object({
     heroImage: z.string().optional(),
 });
 
+const blogenSchema = z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.string().optional(),
+    heroImage: z.string().optional(),
+});
+
 const storeSchema = z.object({
     title: z.string(),
     description: z.string(),
@@ -24,11 +32,14 @@ const storeSchema = z.object({
 
 export type BlogSchema = z.infer<typeof blogSchema>;
 export type StoreSchema = z.infer<typeof storeSchema>;
+export type BlogenSchema = z.infer<typeof blogenSchema>;
 
 const blogCollection = defineCollection({ schema: blogSchema });
 const storeCollection = defineCollection({ schema: storeSchema });
+const blogenCollection = defineCollection({ schema: blogenSchema });
 
 export const collections = {
     'blog': blogCollection,
-    'store': storeCollection
+    'store': storeCollection,
+    'blogen': blogenCollection
 }

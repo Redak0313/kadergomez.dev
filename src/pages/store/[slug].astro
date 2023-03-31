@@ -4,7 +4,7 @@ import { CollectionEntry, getCollection } from "astro:content";
 import { StoreSchema } from "../../content/config";
 import StoreItemLayout from "../../layouts/StoreItemLayout.astro";
 
-changeLanguage("es");
+changeLanguage("en");
 
 export async function getStaticPaths() {
     const itemEntries = await getCollection("store");

@@ -1,20 +1,20 @@
 ---
-import i18next, { changeLanguage } from "i18next";
+import { changeLanguage } from "i18next";
 import { CollectionEntry, getCollection } from "astro:content";
-import { BlogSchema } from "../../content/config";
-import PostLayout from "../../layouts/PostLayout.astro";
+import { BlogSchema } from "../../../content/config";
+import PostLayout from "../../../layouts/PostLayout.astro";
 
-changeLanguage("en");
+changeLanguage("es");
 
 export async function getStaticPaths() {
-    const postEntries = await getCollection("blog");
+    const postEntries = await getCollection("blogen");
     return postEntries.map(entry => ({
         params: { slug: entry.slug },
         props: { entry },
     }));
 }
 interface Props {
-    entry: CollectionEntry<"blog">;
+    entry: CollectionEntry<"blogen">;
 }
 const { entry } = Astro.props;
 const post: BlogSchema = entry.data;

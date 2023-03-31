@@ -1,7 +1,28 @@
 {
-    "hosting": {
-      "public": "dist",
-      "ignore": []
-    }
+  "hosting": {
+    "public": "dist",
+    "ignore": [],
+    "redirects": [
+      {
+        "source": "/es/blog",
+        "destination": "/blog",
+        "type": 301
+      },
+      {
+        "source": "/es/blogen",
+        "destination": "/blog",
+        "type": 301
+      },
+      {
+        "source": "/en/blog",
+        "destination": "/blogen",
+        "type": 301
+      },
+      {
+        "source": "/en/blogen",
+        "destination": "/blogen",
+        "type": 301
+      }
+    ]
+  }
 }
-
