@@ -220,8 +220,8 @@ import { LanguageSelector } from "astro-i18next/components";
 <script>
   const homeLink = document.getElementById("home");
   const projectsLink = document.getElementById("projects");
-  const servicesLink = document.getElementById("services");
-  const storeLink = document.getElementById("store");
+  // const servicesLink = document.getElementById("services");
+  // const storeLink = document.getElementById("store");
   const blogLink = document.getElementById("blog");
   const cvLink = document.getElementById("cv");
 
@@ -229,7 +229,7 @@ import { LanguageSelector } from "astro-i18next/components";
 
   const url = window.location.href;
 
-  const pages = [projectsLink, servicesLink, storeLink, blogLink, cvLink];
+  const pages = [projectsLink, blogLink, cvLink];
 
   pages.forEach((elem) => {
     if (url.includes(elem!.id)) {

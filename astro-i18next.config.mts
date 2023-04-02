@@ -4,12 +4,8 @@ export default {
     locales: ["en", "es"],
     routes: {
       es: {
-        "store": "tienda",
-        "store/[...page]": "tienda/[...page]",
-        "store/[slug]": "tienda/[slug]",
         "cv": "cv",
         "projects": "proyectos",
-        "services": "servicios",
       }
     },
   };
