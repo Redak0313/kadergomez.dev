@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import SideBar from "../components/SideBar.astro";
 import { t } from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
+import { GoogleAnalytics } from 'astro-google-analytics';
 
 // import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
 
@@ -33,6 +34,7 @@ const { image } = Astro.props;
       // 👆 you could import the CDN directly instead of these two lines
     </script>
     <BaseHead title={t("site.title")} description={t("site.description")} image={image} />
+    <GoogleAnalytics id="G-85R5WTK9MT" />
   </head>
   <body>
     <div class="bg-base-100 drawer drawer-mobile">
